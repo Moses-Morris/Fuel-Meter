@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 
 const FuelForm = () => {
     return (
-        <Form>
+        <Form className="mt-4">
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Fuel Amount</Form.Label>
                 <Form.Control type="number" placeholder="Enter fuel amount" />

@@ -1,15 +1,17 @@
 import React from "react";
 //import './App.css';
-import FuelForm from './FuelForm'
+import FuelForm from './FuelForm';
+import AppNavbar from "./AppNavbar";
+import FuelInfoCard from "./FuelInfoCard";
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>Fuel Meter App</h1>
+            <AppNavbar />
+            <div className="container">
                 <FuelForm />
-            </header>
-            
+            <FuelInfoCard fuelAmount={50} distanceCovered={200} />
+            </div>
         </div>
     );
 }
