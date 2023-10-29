@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const FuelEntry = require("../models/fuel");
 
-// GET all fuel entries
 router.get("/fuel", async (req, res) => {
   try {
     const entries = await FuelEntry.find();
@@ -13,7 +12,6 @@ router.get("/fuel", async (req, res) => {
   }
 });
 
-// POST a new fuel entry
 router.post("/", async (req, res) => {
   try {
     const entry = new FuelEntry(req.body);
