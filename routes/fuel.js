@@ -1,30 +1,52 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const FuelEntry = require('../models/fuel');
+const FuelEntry = require("../models/fuel");
 
 // GET all fuel entries
-router.get('/fuel', async (req, res) => {
-try {
+router.get("/fuel", async (req, res) => {
+  try {
     const entries = await FuelEntry.find();
     res.json(entries);
-} catch (err) {
+  } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
-}
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // POST a new fuel entry
-router.post('/', async (req, res) => {
-try {
+router.post("/", async (req, res) => {
+  try {
     const entry = new FuelEntry(req.body);
     const savedEntry = await entry.save();
     res.status(201).json(savedEntry);
-} catch (err) {
+  } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
-}
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-// Implement PUT and DELETE
+router.put("/fuel/:id", async (req, res) => {
+  try {
+    const updatedEntry = await FuelEntry.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json(updatedEntry);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.delete("/fuel/:id", async (req, res) => {
+  try {
+    await FuelEntry.findByIdAndDelete(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 module.exports = router;
