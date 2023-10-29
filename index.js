@@ -11,5 +11,5 @@ app.use(bodyParser.json());
 app.use("/fuel", fuelRoutes);
 
 app.listen(port, () => {
-  onsole.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
